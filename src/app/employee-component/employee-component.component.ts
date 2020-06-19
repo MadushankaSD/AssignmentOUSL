@@ -21,12 +21,6 @@ interface EmployeeResponce {
 })
 
 export class EmployeeComponentComponent implements OnInit {
-/*  id;
-  employee_name;
-  employee_salary;
-  employee_age;
-  profile_image;*/
-
   number;
   save="Save";
   tablelick:boolean;
@@ -58,19 +52,6 @@ employee = new FormGroup({
          this.employees= responce.data;
       });
   }
-
-/*  getSpecificcustomers(){
-    this.http.get(this.url+'/employee/'+)
-      .subscribe(responce => {
-        console.log(responce);
-
-        /!*if(responce.length==0){
-          this.desableForword=true;
-        }else {
-          this.desableForword=false;
-        }*!/
-      });
-  }*/
 
   btnDeleteClick($event,employee) {
     $event.stopPropagation();
@@ -128,9 +109,7 @@ employee = new FormGroup({
   searchEmployee(search: HTMLInputElement) {
     this.http.get<EmployeeResponce>(this.url+'/employee/'+search.value)
       .subscribe((responce) => {
-        console.log(responce);
-        /*this.employees.splice(0,this.employees.length);
-        this.employees= responce.data;*/
+        this.employees= responce.data;
       });
   }
 }
