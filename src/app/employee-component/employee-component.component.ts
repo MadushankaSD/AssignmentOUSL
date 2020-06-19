@@ -21,18 +21,18 @@ interface EmployeeResponce {
 })
 
 export class EmployeeComponentComponent implements OnInit {
-  id;
+/*  id;
   employee_name;
   employee_salary;
   employee_age;
-  profile_image;
+  profile_image;*/
 
   number;
   save="Save";
   tablelick:boolean;
 
 
-  employee = new FormGroup({
+employee = new FormGroup({
     id:new FormControl("",Validators.required),
     employee_name:new FormControl("",Validators.required),
     employee_salary:new FormControl("",Validators.required),
@@ -97,8 +97,10 @@ export class EmployeeComponentComponent implements OnInit {
         });
 
     }else {
-      this.http.post(this.url+'/create', this.employee.value)
+      console.log(this.employee.value);
+      this.http.post(this.url+'/create',JSON.stringify(this.employee.value))
         .subscribe(response => {
+          console.log(response);
           this.employees.push(this.employee.value);
           this.employee.reset();
         });
@@ -109,14 +111,26 @@ export class EmployeeComponentComponent implements OnInit {
     this.save="update"
     this.tablelick=true;
     this.number = this.employees.indexOf(employee);
-    this.id=employee.id;
-    this.employee_name=employee.name;
-    this.employee_salary=employee.address;
-    this.employee_age=employee.age;
+    console.log(employee.name);
+    this.employee.patchValue({
+      id:employee.id,
+      employee_name:employee.employee_name,
+      employee_salary:employee.employee_salary,
+      employee_age:employee.employee_age,
+    });
   }
 
   clearClick() {
     this.save="save"
     this.tablelick=false;
+  }
+
+  searchEmployee(search: HTMLInputElement) {
+    this.http.get<EmployeeResponce>(this.url+'/employee/'+search.value)
+      .subscribe((responce) => {
+        console.log(responce);
+        /*this.employees.splice(0,this.employees.length);
+        this.employees= responce.data;*/
+      });
   }
 }

@@ -15,33 +15,31 @@
                 <label for="txtId">Employee ID</label>
                 <input
                   [readonly]="tablelick"
-                  [(ngModel)]="id"
-                  type="text"  class="form-control" Name="id"  id="txtId" placeholder="Enter Employee ID">
+
+                  type="text"  class="form-control" formControlName="id"  id="txtId" placeholder="Enter Employee ID">
               </div>
               <div class="form-group">
                 <label for="txtName">Employee Name</label>
                 <input
-                  [(ngModel)]="employee_name"
-                  type="text"  class="form-control" Name="name"  id="txtName" placeholder="Enter Employee Name">
+
+                  type="text"  class="form-control" formControlName="employee_name"  id="txtName" placeholder="Enter Employee Name">
               </div>
               <div class="form-group">
                 <label
                   for="txtSalary">Employee salary</label>
                 <input
-                  [(ngModel)]="employee_salary"
-                  type="text"  class="form-control" Name="salary"  id="txtSalary" placeholder="Enter Employee Address">
+
+                  type="text"  class="form-control" formControlName="employee_salary"  id="txtSalary" placeholder="Enter Employee Address">
               </div>
               <div class="form-group">
                 <label
                   for="txtage">Employee age</label>
                 <input
-                  [(ngModel)]="employee_age"
-                  type="text"  class="form-control" Name="salary"  id="txtage" placeholder="Enter Employee age">
+                  type="text"  class="form-control" formControlName="employee_age"  id="txtage" placeholder="Enter Employee age">
               </div>
               <div class="form-group">
                 <label for="image">Employee Image</label>
                 <input
-                  [(ngModel)]="profile_image"
                   type="file" class="form-control-file" id="image">
               </div>
             </div>
@@ -61,9 +59,13 @@
         <!-- /.card -->
       </div>
       <div class="col col-12 col-md-6">
-        <div class="card card-primary card-outline">
+        <div class="card card-primary card-outline table-wrapper-scroll-y my-custom-scrollbar">
+          <!-- Search form -->
+          <div class="md-form mt-0">
+            <input (keyup.enter)="searchEmployee(search)" #search class="form-control" type="text" placeholder="Search" aria-label="Search">
+          </div>
           <div class="card-body">
-            <table id="tbl-customer" class="table table-hover table-bordered">
+            <table id="tbl-employees" class="table table-hover table-bordered">
               <thead>
               <tr>
                 <th class="text-center">Image</th>
@@ -83,7 +85,7 @@
                 <td>{{employee.employee_salary}}</td>
                 <td>{{employee.employee_age}}</td>
                 <td>
-                  <!--<i (click)="btnDeleteClick($event,employee)" class="fa fa-trash"></i>-->
+                 <!-- <i (click)="btnDeleteClick($event,employee)" class="fa fa-trash"></i>-->
                   <button (click)="btnDeleteClick($event,employee)" class="btn btn-danger">Delete</button>
                 </td>
               </tr>
