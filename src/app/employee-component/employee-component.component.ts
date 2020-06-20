@@ -111,7 +111,7 @@ export class EmployeeComponentComponent implements OnInit {
       this.getcustomers();
     } else {
       if (search.key=="Enter") {
-        this.http.get<EmployeeResponce>(this.url + '/employee/' + search.target.value)
+        this.http.get<EmployeeResponce>(this.url + '/employee/'+search.target.value)
           .subscribe((responce) => {
               this.employees.splice(0, this.employees.length);
               this.employees = responce.data;
