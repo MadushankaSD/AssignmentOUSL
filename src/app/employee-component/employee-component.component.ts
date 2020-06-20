@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
-import {error} from "util";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {error} from 'util';
 
 interface EmployeeResponce {
   status: string;
@@ -12,7 +12,7 @@ interface EmployeeResponce {
     employee_salary: number
     employee_age: number
     profile_image: string
-  }]
+  }];
 }
 
 @Component({
@@ -23,15 +23,15 @@ interface EmployeeResponce {
 
 export class EmployeeComponentComponent implements OnInit {
   number;
-  save = "Save";
+  save = 'Save';
   tablelick: boolean;
 
   employee = new FormGroup({
-    id: new FormControl("", Validators.required),
-    employee_name: new FormControl("", Validators.required),
-    employee_salary: new FormControl("", Validators.required),
-    employee_age: new FormControl("", Validators.required),
-    profile_image: new FormControl("")
+    id: new FormControl('', Validators.required),
+    employee_name: new FormControl('', Validators.required),
+    employee_salary: new FormControl('', Validators.required),
+    employee_age: new FormControl('', Validators.required),
+    profile_image: new FormControl('')
   });
 
   employees: any[];
@@ -55,14 +55,14 @@ export class EmployeeComponentComponent implements OnInit {
 
   btnDeleteClick($event, employee) {
     $event.stopPropagation();
-    if (confirm("Do You Wish To Delete This Customer..!")) {
+    if (confirm('Do You Wish To Delete This Customer..!')) {
       this.http.delete(this.url + '/delete/' + employee.id)
         .subscribe(val => {
-          let number = this.employees.indexOf(employee);
+          const number = this.employees.indexOf(employee);
           this.employees.splice(number, 1);
           this.employee.reset();
           this.tablelick = false;
-          this.save = "Save";
+          this.save = 'Save';
         });
     }
   }
@@ -71,10 +71,10 @@ export class EmployeeComponentComponent implements OnInit {
     if (this.tablelick) {
       this.http.put(this.url + '/update/' + this.employee.value.id, this.employee.value)
         .subscribe(response => {
-          this.employees.splice(this.number, 1, this.employee.value)
+          this.employees.splice(this.number, 1, this.employee.value);
           this.employee.reset();
           this.tablelick = false;
-          this.save = "save";
+          this.save = 'save';
         });
 
     } else {
@@ -89,7 +89,7 @@ export class EmployeeComponentComponent implements OnInit {
   }
 
   tableClick(employee) {
-    this.save = "update"
+    this.save = 'update';
     this.tablelick = true;
     this.number = this.employees.indexOf(employee);
     this.employee.patchValue({
@@ -102,7 +102,7 @@ export class EmployeeComponentComponent implements OnInit {
   }
 
   clearClick() {
-    this.save = "save"
+    this.save = 'save';
     this.tablelick = false;
   }
 
@@ -110,8 +110,8 @@ export class EmployeeComponentComponent implements OnInit {
     if (search.target.value.length == 0) {
       this.getcustomers();
     } else {
-      if (search.key=="Enter") {
-        this.http.get<EmployeeResponce>(this.url + '/employee/'+search.target.value)
+      if (search.key == 'Enter') {
+        this.http.get<EmployeeResponce>(this.url + '/employee/' + search.target.value)
           .subscribe((responce) => {
               this.employees.splice(0, this.employees.length);
               this.employees = responce.data;
