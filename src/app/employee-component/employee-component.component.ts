@@ -25,7 +25,6 @@ export class EmployeeComponentComponent implements OnInit {
   save="Save";
   tablelick:boolean;
 
-
 employee = new FormGroup({
     id:new FormControl("",Validators.required),
     employee_name:new FormControl("",Validators.required),

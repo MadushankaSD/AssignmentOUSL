@@ -6,3 +6,10 @@
 .table-wrapper-scroll-y {
   display: block;
 }
+.form-control.ng-touched.ng-invalid{
+  border: 1px solid red;
+}
+
+.content{
+  background-color: cornsilk;
+}

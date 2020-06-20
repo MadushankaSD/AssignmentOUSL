@@ -1,0 +1,10 @@
+.gallery-item, img {
+  max-width: fit-content;
+  vertical-align: middle;
+  height: 50px;
+  width: 200px;
+}
+.bg-light {
+  background-color: #f0d886b3!important;
+  border-radius: 1px;
+}
