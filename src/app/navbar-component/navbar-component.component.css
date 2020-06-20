@@ -8,3 +8,9 @@
   background-color: #f0d886b3!important;
   border-radius: 1px;
 }
+.navbar-collapse {
+  align-items: end !important;
+}
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+  color: rgb(58, 95, 150);
+}

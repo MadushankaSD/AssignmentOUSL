@@ -37,7 +37,7 @@
               <div class="form-group">
                 <label for="image">Employee Image</label>
                 <input
-                  type="file" class="form-control-file" id="image">
+                  formControlName="profile_image" type="file" class="form-control-file" id="image">
               </div>
             </div>
             <div class="alert alert-danger" *ngIf="employee.touched && employee.invalid"> You must Fill All the Field
@@ -60,12 +60,8 @@
         <div class="card card-primary card-outline table-wrapper-scroll-y my-custom-scrollbar">
           <!-- Search form -->
           <div class="md-form mt-0">
-            <input (keyup.enter)="searchEmployee(search)" #search class="form-control" type="text" placeholder="Search" aria-label="Search">
+            <input (keyup)="searchEmployee($event)" class="form-control" type="text" placeholder="Search">
           </div>
-        <!--  <form [formGroup]="search" class="form-inline my-2 my-lg-0">
-            <input formControlName="searchValue" class="form-control mr-sm-2" type="search" placeholder="Search">
-            <button (click)="searchEmployee()" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>-->
           <div class="card-body">
             <table id="tbl-employees" class="table table-hover table-bordered">
               <thead>
