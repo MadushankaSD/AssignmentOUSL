@@ -63,6 +63,7 @@
         </div>
         <!-- /.card -->
       </div>
+
       <div class="col col-12 col-md-6 scrall"  >
         <div id="profile" class="card card-primary" *ngFor="let employee of employees">
           <div class="card-header">
@@ -71,7 +72,7 @@
           </span>
             <span class="float-left">
               <h4 id="proName" (click)="tableClick(employee)">{{employee.employee_name}}</h4>
-              <p id="empId">{{employee.id}}</p>
+              <p id="empId">id: {{employee.id}}</p>
             </span>
             <span id="edit" class="float-right" (click)="btnDeleteClick($event,employee)"><h5>...</h5></span>
           </div>
