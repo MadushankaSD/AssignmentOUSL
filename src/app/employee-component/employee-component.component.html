@@ -15,24 +15,27 @@
                 <label for="txtId">Employee ID</label>
                 <input
                   [readonly]="tablelick"
-                  type="text"  class="form-control" formControlName="id"  id="txtId" placeholder="Enter Employee ID">
+                  type="text" class="form-control" formControlName="id" id="txtId" placeholder="Enter Employee ID">
               </div>
               <div class="form-group">
                 <label for="txtName">Employee Name</label>
                 <input
-                  type="text"  class="form-control" formControlName="employee_name"  id="txtName" placeholder="Enter Employee Name">
+                  type="text" class="form-control" formControlName="employee_name" id="txtName"
+                  placeholder="Enter Employee Name">
               </div>
               <div class="form-group">
                 <label
                   for="txtSalary">Employee salary</label>
                 <input
-                  type="text"  class="form-control" formControlName="employee_salary"  id="txtSalary" placeholder="Enter Employee Address">
+                  type="text" class="form-control" formControlName="employee_salary" id="txtSalary"
+                  placeholder="Enter Employee Address">
               </div>
               <div class="form-group">
                 <label
                   for="txtage">Employee age</label>
                 <input
-                  type="text"  class="form-control" formControlName="employee_age"  id="txtage" placeholder="Enter Employee age">
+                  type="text" class="form-control" formControlName="employee_age" id="txtage"
+                  placeholder="Enter Employee age">
               </div>
               <div class="form-group">
                 <label for="image">Employee Image</label>
@@ -42,71 +45,42 @@
             </div>
             <div class="alert alert-danger" *ngIf="employee.touched && employee.invalid"> You must Fill All the Field
               <div *ngIf="employee.get('id').invalid && employee.get('id').touched">Id reqired</div>
-              <div *ngIf="employee.get('employee_name').invalid && employee.get('employee_name').touched">name Reqired</div>
-              <div *ngIf="employee.get('employee_salary').invalid && employee.get('employee_salary').touched">Employee salary reqired</div>
-              <div *ngIf="employee.get('employee_age').invalid && employee.get('employee_age').touched">Employee Age reqired</div>
+              <div *ngIf="employee.get('employee_name').invalid && employee.get('employee_name').touched">name Reqired
+              </div>
+              <div *ngIf="employee.get('employee_salary').invalid && employee.get('employee_salary').touched">Employee
+                salary reqired
+              </div>
+              <div *ngIf="employee.get('employee_age').invalid && employee.get('employee_age').touched">Employee Age
+                reqired
+              </div>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-              <button  (click)="saveCustomer()" type="submit" class="btn btn-primary" id="btnSubmit">{{save}}</button>
+              <button (click)="saveCustomer()" type="submit" class="btn btn-primary" id="btnSubmit">{{save}}</button>
               <button (click)="clearClick()" type="reset" class="btn btn-warning" id="btnClear">Clear</button>
             </div>
           </form>
         </div>
-
         <!-- /.card -->
       </div>
-      <div class="col col-12 col-md-6">
-        <div class="card card-primary card-outline table-wrapper-scroll-y my-custom-scrollbar">
-          <!-- Search form -->
-          <div class="md-form mt-0">
-            <input (keyup)="searchEmployee($event)" class="form-control" type="text" placeholder="Search">
+      <div class="col col-12 col-md-6 scrall"  >
+        <div id="profile" class="card card-primary" *ngFor="let employee of employees">
+          <div class="card-header">
+          <span class="float-left">
+               <img (click)="tableClick(employee)" class="card-img-top rounded-circle" src="{{employee.profile_image}}" alt="proPic">
+          </span>
+            <span class="float-left">
+              <h4 id="proName" (click)="tableClick(employee)">{{employee.employee_name}}</h4>
+              <p id="empId">{{employee.id}}</p>
+            </span>
+            <span id="edit" class="float-right" (click)="btnDeleteClick($event,employee)"><h5>...</h5></span>
           </div>
           <div class="card-body">
-            <table id="tbl-employees" class="table table-hover table-bordered">
-              <thead>
-              <tr>
-                <th class="text-center">Image</th>
-                <th class="text-center">ID</th>
-                <th class="text-center">Name</th>
-                <th class="text-center">salary</th>
-                <th class="text-center">age</th>
-                <th></th>
-              </tr>
-              </thead>
-
-              <tbody *ngFor="let employee of employees">
-              <tr (click)="tableClick(employee)" class="mouseChange">
-                <td>{{employee.profile_image}}</td>
-                <td>{{employee.id}}</td>
-                <td>{{employee.employee_name}}</td>
-                <td>{{employee.employee_salary}}</td>
-                <td>{{employee.employee_age}}</td>
-                <td>
-                 <!-- <i (click)="btnDeleteClick($event,employee)" class="fa fa-trash"></i>-->
-                  <button (click)="btnDeleteClick($event,employee)" class="btn btn-danger">Delete</button>
-                </td>
-              </tr>
-              </tbody>
-
-              <tfoot style="display: none;">
-              <tr>
-                <td colspan="5" class="center">There are no records In This Page right now !</td>
-              </tr>
-              </tfoot>
-            </table>
-          </div><!-- /.card-body -->
-          <div class="card-footer" >
-           <!-- <ul class="pagination pagination-sm m-0">
-              <div  class="pagination">
-                <a [hidden]="desableBackword" (click)="backwordClick()">«</a>
-                <a >{{pageno+1}}</a>
-                <a [hidden]="desableForword" (click)="forwordClick()">»</a>
-              </div>
-            </ul>-->
-          </div>
+            <div><span>Salary :</span>{{employee.employee_salary | currency:'Rs :'}}</div>
+            <div><span>Age    :</span>{{employee.employee_age}}</div>
         </div>
       </div>
+    </div>
     </div>
   </div><!-- /.container-fluid -->
 </section>

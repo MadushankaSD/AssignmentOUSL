@@ -13,3 +13,25 @@
 .content{
   background-color: cornsilk;
 }
+#proName{
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-top: 5px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+}
+#empId{
+  margin-bottom: 8px;
+  padding-left: 5px;
+  color: #6A6C75;
+}
+.card-body{
+  padding: 5px;
+}
+#profile{
+  margin-bottom: 10px;
+}
+.scrall{
+  max-height: 570px;
+  overflow-y: auto;
+}

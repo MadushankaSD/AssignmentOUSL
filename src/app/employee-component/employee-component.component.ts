@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {error} from 'util';
+import {animate, animation, style, transition, trigger} from "@angular/animations";
 
 interface EmployeeResponce {
   status: string;
@@ -18,7 +19,15 @@ interface EmployeeResponce {
 @Component({
   selector: 'app-employee-component',
   templateUrl: './employee-component.component.html',
-  styleUrls: ['./employee-component.component.css']
+  styleUrls: ['./employee-component.component.css'],
+  animations:[
+    trigger('fadeOut',[
+      transition(':leave' ,[
+        style({opacity:1}),
+        animate(2000,style({opacity:0}))
+      ])
+    ])
+  ]
 })
 
 export class EmployeeComponentComponent implements OnInit {

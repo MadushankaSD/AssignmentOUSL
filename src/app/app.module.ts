@@ -25,7 +25,7 @@ import { NavbarComponentComponent } from './navbar-component/navbar-component.co
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      {path: 'employee', component: EmployeeComponentComponent},
+      {path: '', component: EmployeeComponentComponent},
       {path: 'connectUs', component: ContactComponentComponent}
     ])
   ],
